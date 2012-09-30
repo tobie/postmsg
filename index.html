@@ -12,13 +12,21 @@
       function display(e) {
         var msg = new Date().toISOString() + ' ' + e.origin + ' - ' + String(e.data) + '\n';
         var node = document.createTextNode(msg);
-        document.querySelector('code').appendChild(node);
+        document.getElementById('output').appendChild(node);
       }
     </script>
   </head>
   <body>
-    <p>This page only does one thing. It echoes back cross origin messages.</p>
+    <p>This page only does one thing. It echoes back cross origin messages. To use it just do:</p>
+    <pre><code>var ORIGIN = 'http://postmsg.org';
+var popup = window.open(ORIGIN);
+popup.postMessage("Your message goes here.", ORIGIN);
+window.addEventListener('message', function(e) {
+  if (e.origin === ORIGIN) {
+    console.log(e.data);
+  }
+}, false);</code></pre>
     
-    <pre><code></code></pre>
+    <pre><code id=output></code></pre>
   </body>
 </html>
