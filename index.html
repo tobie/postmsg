@@ -3,18 +3,6 @@
   <head>
     <title>Post Message Echo</title>
     <meta charset="utf-8">
-    <script>
-      window.addEventListener('message', function(e) {
-        display(e);
-        e.source.postMessage(e.data, '*');
-      }, false);
-      
-      function display(e) {
-        var msg = new Date().toISOString() + ' ' + e.origin + ' - ' + String(e.data) + '\n';
-        var node = document.createTextNode(msg);
-        document.getElementById('output').appendChild(node);
-      }
-    </script>
   </head>
   <body>
     <p>This page only does one thing. It echoes back cross origin messages. To use it just do:</p>
@@ -29,5 +17,17 @@ popup.postMessage("Your message goes here.", ORIGIN);
 </code></pre>
     
     <pre><code id=output></code></pre>
+    <script>
+      window.addEventListener('message', function(e) {
+        display(e);
+        e.source.postMessage(e.data, '*');
+      }, false);
+      
+      function display(e) {
+        var msg = new Date().toISOString() + ' ' + e.origin + ' - ' + String(e.data) + '\n';
+        var node = document.createTextNode(msg);
+        document.getElementById('output').appendChild(node);
+      }
+    </script>
   </body>
 </html>
