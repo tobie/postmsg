@@ -19,13 +19,14 @@
   <body>
     <p>This page only does one thing. It echoes back cross origin messages. To use it just do:</p>
     <pre><code>var ORIGIN = 'http://postmsg.org';
-var popup = window.open(ORIGIN);
-popup.postMessage("Your message goes here.", ORIGIN);
 window.addEventListener('message', function(e) {
   if (e.origin === ORIGIN) {
     console.log(e.data);
   }
-}, false);</code></pre>
+}, false);
+var popup = window.open(ORIGIN);
+popup.postMessage("Your message goes here.", ORIGIN);
+</code></pre>
     
     <pre><code id=output></code></pre>
   </body>
