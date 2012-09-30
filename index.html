@@ -5,11 +5,20 @@
     <meta charset="utf-8">
     <script>
       window.addEventListener('message', function(e) {
+        display(e);
         e.source.postMessage(e.data, '*');
       }, false);
+      
+      function display(e) {
+        var msg = new Date().toISOString() + ' ' + e.origin + ' - ' + String(e.data) + '\n';
+        var node = document.createTextNode(msg);
+        document.querySelector('code').appendChild(node);
+      }
     </script>
   </head>
   <body>
     <p>This page only does one thing. It echoes back cross origin messages.</p>
+    
+    <pre><code></code></pre>
   </body>
 </html>
